@@ -5,6 +5,7 @@ var Game = function() {
 	function constructur() {
 		Player.init();
 
+		
 		//Start spawning pipes
 		requestAnimationFrame(loopPipe);
 	}
@@ -19,10 +20,7 @@ var Game = function() {
 
 	function incrementScore(){
 		score++;
-	}
-
-	function getScore(argument){
-		return score;
+		$("#Game-score").innerHTML = score;
 	}
 
 	function newPipe() {
