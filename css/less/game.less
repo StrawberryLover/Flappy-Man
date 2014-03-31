@@ -1,0 +1,118 @@
+html {
+	background: url(img/bg.png) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+body {
+	overflow: hidden;
+}
+
+#Game-body{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+
+	#Game-char {
+		position: absolute;
+		top: 35%;
+		left: 20%;
+		width: 100px;
+		height: 90px;
+		background-image:url('img/charSprit.jpg');
+		background-position: -0px -190px;
+
+		-webkit-animation: fly 450ms steps(4) infinite;
+		-webkit-transform: scale(1.3,1.3);
+	}
+
+	#Ground {
+		position: absolute;
+		width: 100%;
+		height: 90px;
+		bottom: -6px; 
+		left: 0;
+		z-index: 15;
+		-webkit-transform: translate3d(0,0,0);
+		background: url(img/ground.png) 0 100% repeat-x; 
+		-webkit-animation: groundMove linear 50s infinite both
+	}
+
+	.pipeContainer {
+		position: absolute;
+		left: -100px;
+		width: 80px;
+		height: 100%;
+		z-index: 10;
+
+		.pipe {
+			-webkit-animation: pipeMove 7500ms linear;
+		}
+
+		.upPipe {
+			position: absolute;
+			height: 40%;
+			width: 100%;
+			top: 0;
+
+			background-position: -113px -700px;
+
+			&:after {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				margin-bottom: -60px;
+				margin-left: -80px;
+				width: 100%;
+				height: 115px;
+				background: url('http://localhost:8090/css/less/img/downPipeHead.png') no-repeat;
+				background-size: 100% 50%;
+			}
+		}
+
+		.downPipe {
+			position: absolute;
+			height: 40%;
+			width: 100%;
+			bottom: 0;
+
+			background-position: -168px -645px;
+
+			&:after {
+				content: "";
+				position: absolute;
+				width: 100%;
+				height: 115px;
+				background: url('http://localhost:8090/css/less/img/upPipeHead.png') no-repeat;
+				background-size: 100% 50%;
+				margin-bottom: -60px;
+				margin-left: -80px;
+			}
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
+
+	}
+} 
+
+@-webkit-keyframes groundMove {  
+	0% { background-position: -3584px 100%;} 
+	100% {background-position: 0 100%; } 
+}
+
+@-webkit-keyframes fly {
+	from { background-position:	0px -190px; }
+	to { background-position:	-384px -190px; }
+}
+
+@-webkit-keyframes pipeMove {
+   0% { left: 1200px; }
+   100% { left: -100px; }
+}

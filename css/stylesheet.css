@@ -1,0 +1,25 @@
+/* ############ Global ########### */
+
+@import "less/lobby.less";
+@import "less/main.less";
+@import "less/builder.less";
+
+body {
+	background:url('img/backgroundRed.jpg') no-repeat center center fixed;
+	background-size: cover;
+}
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
+textarea {
+	min-width: 555px;
+	resize:none;
+}
+
