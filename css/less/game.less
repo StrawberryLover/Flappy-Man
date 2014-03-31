@@ -8,6 +8,7 @@ html {
 
 body {
 	overflow: hidden;
+	font-family: 'Blood';
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -33,8 +34,8 @@ body {
 
 	#Game-score {
 		text-align: center ;
-		margin-top: 75px;
-		color: white;
+		margin-top: -10px;
+		color: burlywood;
 		font-size: 150px;
 		padding:0px;
 		margin-left: 47%;
@@ -42,7 +43,7 @@ body {
 		margin-bottom: 0px;
 		position:absolute;
 		z-index:100;
-		text-shadow: 0 0 2px #fff;
+		text-shadow: 2px 0px 25px #000;
 	}
 
 	#Game-char {
@@ -143,4 +144,9 @@ body {
 @-webkit-keyframes pipeMove {
    0% { left: 2000px; }
    100% { left: -100px; }
+}
+
+@font-face {
+    font-family: 'Blood';
+    src: url('/css/less/adrip1.ttf');
 }
