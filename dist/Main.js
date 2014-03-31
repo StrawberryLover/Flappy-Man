@@ -5,12 +5,13 @@ var Game = function() {
 	function constructur() {
 		Player.init();
 
-		//Wait 3sec before spawning pipes
-		setTimeout(function(){requestAnimationFrame(loopPipe);},1000);
+		//Start spawning pipes
+		requestAnimationFrame(loopPipe);
 	}
 
 	function loopPipe() {
 		newPipe();
+
 
 		//Wait 3sec before spawning another pipe
 		setTimeout(function(){requestAnimationFrame(loopPipe);}, 3000);
@@ -40,11 +41,9 @@ $(window).on("click keydown", function(e) {
 	}
 });
 
-$(window).on("transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd",
-    function() {
-        $(this).remove();
-    }
-);
+$(window).bind('oanimationend animationend webkitAnimationEnd', function() { 
+	$('.pipeContainer:first').remove();
+});
 var Player = function() {
 	var state = {toPos: 0};
 
