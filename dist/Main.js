@@ -6,7 +6,7 @@ var Game = function() {
 		Player.init();
 
 		//Wait 3sec before spawning pipes
-		setTimeout(function(){requestAnimationFrame(loopPipe);},3000);
+		setTimeout(function(){requestAnimationFrame(loopPipe);},1000);
 	}
 
 	function loopPipe() {
@@ -17,10 +17,10 @@ var Game = function() {
 	}
 
 	function newPipe() {
-		var downHeight = Math.floor((Math.random()*$(window).height()/1.5)+100),
+		var downHeight = Math.floor((Math.random()*$(window).height()/2.2)+150),
 			upHeight = $(window).height() - downHeight - 150;
-		var pipeHtml = "<div class='pipeContainer'>";
 
+		var pipeHtml = "<div class='pipeContainer'>";
 			pipeHtml +=	"<div class='pipe upPipe' style='height:"+ upHeight +"px'>";
 				pipeHtml +=	"<img src='css/less/img/upPipe.gif' /></div>";
 			pipeHtml += "<div class='pipe downPipe' style='height:"+ downHeight +"px'>";
