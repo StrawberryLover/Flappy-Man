@@ -1,5 +1,6 @@
 var Game = function() {
 	var pipes = {list: [], count: 0};
+	var score = 0;
 
 	function constructur() {
 		Player.init();
@@ -13,6 +14,14 @@ var Game = function() {
 
 		//Wait 3sec before spawning another pipe
 		setTimeout(function(){requestAnimationFrame(loopPipe);}, 3000);
+	}
+
+	function incrementScore(){
+		score++;
+	}
+
+	function getScore(argument){
+		return score;
 	}
 
 	function newPipe() {
