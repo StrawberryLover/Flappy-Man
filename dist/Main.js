@@ -11,6 +11,7 @@ var Game = function() {
 
 	function loopPipe() {
 		newPipe();
+		console.log($('.pipeContainer:first').position());
 
 
 		//Wait 3sec before spawning another pipe
@@ -77,7 +78,7 @@ var Player = function() {
 
 		//Floor Hit
 		if($(window).height() < charHeiht + 90) {
-			return true;
+			return false;
 		}
 
 		return false;

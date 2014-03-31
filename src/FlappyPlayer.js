@@ -31,7 +31,7 @@ var Player = function() {
 
 		//Floor Hit
 		if($(window).height() < charHeiht + 90) {
-			return true;
+			return false;
 		}
 
 		return false;

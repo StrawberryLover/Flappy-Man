@@ -11,7 +11,6 @@ var Game = function() {
 	function loopPipe() {
 		newPipe();
 
-
 		//Wait 3sec before spawning another pipe
 		setTimeout(function(){requestAnimationFrame(loopPipe);}, 3000);
 	}
