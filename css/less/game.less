@@ -9,6 +9,13 @@ html {
 body {
 	overflow: hidden;
 	font-family: 'Blood';
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor:default;
 }
 
 #Game-body{
@@ -17,6 +24,13 @@ body {
 	bottom: 0;
 	right: 0;
 	left: 0;
+
+	#Game-mute{
+		position: absolute;
+		right: 0;
+		z-index: 100;
+		cursor:pointer;
+	}
 
 	#Game-score {
 		text-align: center ;

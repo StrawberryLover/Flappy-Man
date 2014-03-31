@@ -1,6 +1,7 @@
 var Game = function() {
 	var pipes = {list: [], count: 0};
 	var score = 0;
+	var mute = false;
 
 	function constructur() {
 		Player.init();
@@ -35,8 +36,20 @@ var Game = function() {
 		$("#Game-body").append(pipeHtml);
 	}
 
+	function setSound() {
+		if(mute) {
+			mute = !mute;
+			$("#Game-mute").attr("src","/css/less/img/VolumeOff.png");
+		}
+		else {
+			$("#Game-mute").attr("src","/css/less/img/VolumeOn.png");
+			mute = !mute;
+		}
+	}
+
 	return {
-		init: constructur
+		init: constructur,
+		sound: setSound
 	};
 }();
 
@@ -45,6 +58,7 @@ $(window).on("click keydown", function(e) {
 		Player.move();
 	}
 });
+
 
 $(window).bind('oanimationend animationend webkitAnimationEnd', function() { 
 	$('.pipeContainer:first').remove();
