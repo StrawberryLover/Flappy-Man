@@ -8,7 +8,7 @@ var Player = function() {
 	}
 
 	function flyAway() {
-		velocity = -4.6;
+		velocity = -5;
 	}
 
 	function fallLoop() {
