@@ -36,6 +36,9 @@ var Player = function() {
 		velocity = 0;
 		position = 280;
 		rotation = 0;
+
+		$(".overlay").addClass("load");
+		$(".dasModel").addClass("load");
 	}
 
 	return {
