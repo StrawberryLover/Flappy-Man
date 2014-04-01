@@ -1,5 +1,5 @@
 var Game = function() {
-	var score = 0, mute = false;
+	var score = 0, highscore = 0, mute = false;
 	var pipes = [], pipeID, pipeTimeOut, end = false, on = false;
 
 	function constructur() {
@@ -7,6 +7,9 @@ var Game = function() {
 		Player.init();
 		on = true;
 		$("#Game-score").html(score);
+		if(highscore === 0) {
+			$("#innerHS").html(score);
+		}
 		//Start spawning pipes
 		pipeID = requestAnimationFrame(loopPipe);
 
@@ -32,6 +35,10 @@ var Game = function() {
 			$("#scoreS").get(0).play();
 		}
 		$("#Game-score").html(score);
+		if(score > highscore) {
+			highscore = score;
+			$("#innerHS").html(score);
+		}
 	}
 
 	function resetGame(){

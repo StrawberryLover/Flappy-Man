@@ -185,17 +185,27 @@ body {
 
 	#highscore {
 		position: absolute;
-		font-size: 0.3em;
+		font-size: 0.6em;
 		z-index: 666;
-		top: 220%;
-		left: 60%;
+		top: 253%;
+		left: 15%;
 	}
 }
 
-.load {
+.loadOver {
 	display: block;
 	opacity: 0.5;
 	-webkit-transition: opacity 2s ease-in;
+	-webkit-transform: translate3d(0,0,0);
+	width: 100%;
+	z-index: 21;
+}
+
+.loadText {
+	display: block;
+	opacity: 1;
+	-webkit-transition: opacity 2s ease-in;
+	-webkit-transform: translate3d(0,0,0);
 }
 
 @-webkit-keyframes groundMove {  
