@@ -1,46 +1,43 @@
 var Player = function() {
-	var state = {toPos: 0};
+	var velocity = 0, position = 0, rotation = 0, 
+		gravity = 0.25, fallIterval;
 
 	function constructur() {
-		state.toPos = $("#Game-char").position().top;
-		requestAnimationFrame(fall);
+		position = $("#Game-char").position().top;
+		fallIterval = setInterval(fallLoop, 1000.0 / 60.0);
 	}
 
 	function flyAway() {
-		var top = $("#Game-char").position().top;
-		var upTo = top - 80;
-
-		//Rais the birdMan 60px
-		state.toPos = (upTo > 0)?upTo:0;
+		velocity = -4.6;
 	}
 
-	function fall() {
-		var playerTop = parseInt($("#Game-char").css("top"), 10);
-
-		if(state.toPos >= playerTop && !groundHit(playerTop)) {		//Fall Down
-			var topString = (Math.floor(playerTop + 2)).toString() + 'px';
-			$("#Game-char").css({top : topString});
-			state.toPos = playerTop + 2;
-		} else {										//Rise Up
-			$("#Game-char").css("top", (playerTop - 4));
-		}
-
-		requestAnimationFrame(fall);
+	function fallLoop() {
+		var playerTop = parseInt($("#Game-char").css("top"));
+		
+		velocity += gravity;
+		position += velocity;
+		rotation = Math.min((velocity / 10) * 90, 90);
+		
+		$("#Game-char").css({ rotate: rotation, top: position });
 	}
 
-	function groundHit(charHeiht) {
-		return ($(window).height() < (charHeiht + 90));
+	function endGame() {
+		clearInterval(fallIterval);
+
+		//Reset Variables
+		velocity = 0;
+		position = 280;
+		rotation = 0;
 	}
 
 	return {
 		init: constructur,
-		move: flyAway
+		move: flyAway,
+		end: endGame
 	};
 }();
 
 $(document).ready(function() {
-    Game.init();
-
     $("#mainS").get(0).play();
 
     $("#Game-mute").click(function() {

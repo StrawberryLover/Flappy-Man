@@ -1,16 +1,20 @@
 var Game = function() {
 	var score = 0, mute = false;
-	var pipes = [], pipeID, end = false;
+	var pipes = [], pipeID, end = false, on = false;
 
 	function constructur() {
 		Player.init();
-
+		on = true;
 		
 		//Start spawning pipes
 		requestAnimationFrame(loopPipe);
 
 		//Start Collison dedector
 		requestAnimationFrame(loopCollision);
+	}
+
+	function getON() {
+		return on;
 	}
 
 	function loopPipe() {
@@ -77,6 +81,12 @@ var Game = function() {
 		var boxBottom = box.top + box.height;
 		var boxTop = box.top;
 
+		if(box.bottom >= $("#Ground").offset().top) {
+			endGame();
+			return;
+		}
+
+
 		if(boxRight > pipeLeft) {
 			if(!(boxTop > pipeTop && boxBottom < pipeBottom)) {
 				endGame();
@@ -93,6 +103,8 @@ var Game = function() {
 		$(".pipe").css('-webkit-animation-play-state', 'paused');
 		$("#Game-char").css('-webkit-animation-play-state', 'paused');
 		end = true;
+
+		Player.end();
 	}
 
 	function setSound() {
@@ -110,12 +122,16 @@ var Game = function() {
 	return {
 		init: constructur,
 		sound: setSound,
-		removePipe: removePipe
+		removePipe: removePipe,
+		isON: getON
 	};
 }();
 
 $(window).on("click keydown", function(e) {
 	if(e.keyCode == 32 || e.type == "click") {
+		if(!Game.isON())
+			Game.init();
+
 		Player.move();
 	}
 });
