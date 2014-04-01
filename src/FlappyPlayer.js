@@ -44,9 +44,3 @@ $(document).ready(function() {
 		Game.sound();
 	});
 });
-
-$(window).on("click keydown", function(e) {
-	if(e.keyCode == 32 || e.type == "click") {
-		Player.move();
-	}
-});
