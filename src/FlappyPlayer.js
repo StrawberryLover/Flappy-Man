@@ -11,9 +11,7 @@ var Player = function() {
 		velocity = -4.6;
 	}
 
-	function fallLoop() {
-		var playerTop = parseInt($("#Game-char").css("top"));
-		
+	function fallLoop() {		
 		velocity += gravity;
 		position += velocity;
 		rotation = Math.min((velocity / 10) * 90, 90);
@@ -23,6 +21,16 @@ var Player = function() {
 
 	function endGame() {
 		clearInterval(fallIterval);
+
+		if(!Game.isMuted()){
+			$("#hitS").get(0).load();
+			$("#hitS").get(0).play();
+			$("#mainS").get(0).muted = true;
+			setTimeout(function(){
+				$("#deathS").get(0).load();
+				$("#deathS").get(0).play();
+			}, 400);
+		}
 
 		//Reset Variables
 		velocity = 0;
@@ -38,6 +46,7 @@ var Player = function() {
 }();
 
 $(document).ready(function() {
+	$("#mainS").get(0).muted = false;
     $("#mainS").get(0).play();
 
     $("#Game-mute").click(function() {
