@@ -14,9 +14,13 @@ var Player = function() {
 	function fallLoop() {		
 		velocity += gravity;
 		position += velocity;
-		rotation = Math.min((velocity / 10) * 90, 90);
-		
-		$("#Game-char").css({ rotate: rotation, top: position });
+		rotation = Math.min((velocity / 15) * 90, 90);
+		document.getElementById('Game-char').style['-webkit-transform'] = "rotate(" + rotation + "deg)";
+		$("#Game-char").css({top: position});
+	}
+
+	function getRotation() {
+		return rotation;
 	}
 
 	function endGame() {
@@ -45,6 +49,7 @@ var Player = function() {
 	return {
 		init: constructur,
 		move: flyAway,
+		getRotation: getRotation,
 		end: endGame
 	};
 }();
