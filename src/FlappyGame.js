@@ -43,7 +43,7 @@ var Game = function() {
 		if(end) return;
 
 		var downHeight = Math.floor((Math.random()*$(window).height()/2.2)+150),
-			upHeight = $(window).height() - downHeight - 150;
+			upHeight = $(window).height() - downHeight - 105;
 
 		var pipeHtml = "<div class='pipeContainer'>";
 			pipeHtml +=	"<div class='pipe upPipe' style='height:"+ upHeight +"px'>";
@@ -61,7 +61,7 @@ var Game = function() {
 	}
 
 	function loopCollision() {
-		var nextPipe = pipes[0];
+		var nextPipe = pipes[0], rotation = Player.getRotation();
 
 		//Check if ther are any pipes in the game
 		if(nextPipe === null)
@@ -80,10 +80,10 @@ var Game = function() {
 		var box = document.getElementById('Game-char').getBoundingClientRect();
 		var boxHeight = box.height + 20;
 		var boxWidth = box.width;
-		var boxTop = box.top + 25;
+		var boxTop = box.top + 35 + (Math.sin(Math.abs(rotation) / 90) * 8);
 		var boxLeft = box.left;
 		var boxRight = box.left + 75;
-		var boxBottom = boxTop + boxHeight - 55;
+		var boxBottom = boxTop + boxHeight - 85 - (Math.sin(Math.abs(rotation) / 90) * 8);
 
 
 		if(boxBottom >= $("#Ground").offset().top + 15) {
@@ -142,7 +142,7 @@ var Game = function() {
 	};
 }();
 
-$(window).on("click keydown", function(e) {
+$(window).on("click keydown touchstart", function(e) {
 	if(e.keyCode == 32 || e.type == "click") {
 		if(!Game.isON())
 			Game.init();
