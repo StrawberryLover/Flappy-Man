@@ -98,10 +98,15 @@ var Game = function() {
 		mute = !mute;
 	}
 
+	function isMuted(){
+		return mute;
+	}
+
 	return {
 		init: constructur,
 		sound: setSound,
-		removePipe: removePipe
+		removePipe: removePipe,
+		isMuted: isMuted
 	};
 }();
 

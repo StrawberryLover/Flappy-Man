@@ -41,15 +41,21 @@ var Player = function() {
 $(document).ready(function() {
     Game.init();
 
-    $("#mainS").get(0).play();
+    //$("#mainS").get(0).play();
 
     $("#Game-mute").click(function() {
 		Game.sound();
 	});
+
+	$(window).on("click keydown", function(e) {
+		if(e.keyCode == 32 || e.type == "click") {
+			if(!Game.isMuted()){
+				$("#flapS").get(0).load();
+				$("#flapS").get(0).play();
+			}
+			Player.move();
+		}
+	});
 });
 
-$(window).on("click keydown", function(e) {
-	if(e.keyCode == 32 || e.type == "click") {
-		Player.move();
-	}
-});
+
