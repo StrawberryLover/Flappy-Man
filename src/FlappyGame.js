@@ -25,6 +25,15 @@ var Game = function() {
 		$("#Game-score").innerHTML = score;
 	}
 
+	function resetGame(){
+		//reset score
+		$("#Game-score").innerHTML = 0;
+		score = 0;
+		//delete pipes
+		$('.pipeContainer').remove();
+
+	}
+
 	function newPipe() {
 		if(end) return;
 
