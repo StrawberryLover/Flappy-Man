@@ -10,7 +10,7 @@ var Game = function() {
 		//Start spawning pipes
 		requestAnimationFrame(loopPipe);
 
-		//Start Collison dedector
+		//Start Collison detector
 		requestAnimationFrame(loopCollision);
 	}
 
@@ -21,22 +21,27 @@ var Game = function() {
 	function loopPipe() {
 		newPipe();
 		
-		//Wait 3sec before spawning another pipe
+		//Wait 2 sec before spawning another pipe
 		setTimeout(function(){requestAnimationFrame(loopPipe);}, 2000);
 	}
 
 	function incrementScore(){
 		score++;
+		$("#scoreS").get(0).load();
+		$("#scoreS").get(0).play();
 		$("#Game-score").html(score);
 	}
 
 	function resetGame(){
 		//reset score
+		$(".overlay").removeClass("load");
+		$(".dasModel").removeClass("load");
 		$("#Game-score").html(0);
 		score = 0;
 		//delete pipes
 		$('.pipeContainer').remove();
-
+		pipes = [];
+		on = false;
 	}
 
 	function newPipe() {
@@ -138,22 +143,25 @@ var Game = function() {
 		sound: setSound,
 		removePipe: removePipe,
 		isMuted: isMuted,
-		isON: getON
+		isON: getON,
+		resetGame: resetGame
 	};
 }();
 
-$(window).on("click keydown touchstart", function(e) {
-	if(e.keyCode == 32 || e.type == "click") {
-		if(!Game.isON())
-			Game.init();
+$(document).ready(function() {
+	$("#Game-body").on("click keydown touchstart", function(e) {
+		if(e.keyCode == 32 || e.type == "click") {
+			if(!Game.isON())
+				Game.init();
 
-		if(!Game.isMuted()){
-			$("#flapS").get(0).load();
-			$("#flapS").get(0).play();
+			if(!Game.isMuted()){
+				$("#flapS").get(0).load();
+				$("#flapS").get(0).play();
+			}
+
+			Player.move();
 		}
-
-		Player.move();
-	}
+	});
 });
 
 $(window).bind('oanimationend animationend webkitAnimationEnd', function() { 

@@ -3,7 +3,7 @@ var Player = function() {
 		gravity = 0.25, fallIterval;
 
 	function constructur() {
-		position = $("#Game-char").position().top;
+		position = ($(window).height() / 100 ) * 35;
 		fallIterval = setInterval(fallLoop, 1000.0 / 60.0);
 	}
 
@@ -59,5 +59,9 @@ $(document).ready(function() {
 
     $("#Game-mute").click(function() {
 		Game.sound();
+	});
+
+	$("#reset").on("click", function(e) {
+		Game.resetGame();
 	});
 });
