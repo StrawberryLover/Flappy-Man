@@ -82,14 +82,6 @@ var Game = function() {
 		$('.pipeContainer:first').remove();
 	}
 
-	function newDevil() {
-		if(end) return;
-
-		var heigth = Math.floor((Math.random()*$(window).height()/2.2)+150)
-		var devilHtml = "<div class='devilHead'>";
-			devilHtml += "<img src='css/less/img/devilFace.png'/></div>";
-	}
-
 	function loopCollision() {
 		var nextPipe = pipes[0], rotation = Player.getRotation();
 
