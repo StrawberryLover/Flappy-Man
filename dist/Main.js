@@ -1,7 +1,13 @@
-var Game = function() {
-	var score = 0, mute = false;
-	var pipes = [], pipeID, end = false;
 
+var Game = function() {
+<<<<<<< Updated upstream
+	var pipes = {list: [], count: 0};
+	var score = 0;
+	var mute = false;
+
+=======
+	var pipes = [], pipeID, end = false;
+>>>>>>> Stashed changes
 	function constructur() {
 		Player.init();
 
@@ -15,7 +21,11 @@ var Game = function() {
 
 	function loopPipe() {
 		newPipe();
+<<<<<<< Updated upstream
+
+=======
 		
+>>>>>>> Stashed changes
 		//Wait 3sec before spawning another pipe
 		setTimeout(function(){requestAnimationFrame(loopPipe);}, 2000);
 	}
@@ -88,20 +98,19 @@ var Game = function() {
 
 	function setSound() {
 		if(mute) {
-			$("#Game-mute").attr("src","/css/less/img/VolumeOn.png");
-			$("#mainS").get(0).muted = false;
+			mute = !mute;
+			$("#Game-mute").attr("src","/css/less/img/VolumeOff.png");
 		}
 		else {
-			$("#Game-mute").attr("src","/css/less/img/VolumeOff.png");
-			$("#mainS").get(0).muted = true;
+			$("#Game-mute").attr("src","/css/less/img/VolumeOn.png");
+			mute = !mute;
 		}
-		mute = !mute;
 	}
 
 	return {
 		init: constructur,
-		sound: setSound,
-		removePipe: removePipe
+<<<<<<< Updated upstream
+		sound: setSound
 	};
 }();
 
@@ -111,6 +120,69 @@ $(window).on("click keydown", function(e) {
 	}
 });
 
+
+=======
+		removePipe: removePipe
+	};
+}();
+
+>>>>>>> Stashed changes
 $(window).bind('oanimationend animationend webkitAnimationEnd', function() { 
 	Game.removePipe();
+});
+
+var Player = function() {
+	var state = {toPos: 0};
+	
+	
+
+	function constructur() {
+		state.toPos = $("#Game-char").position().top;
+		requestAnimationFrame(fall);
+	}
+
+	function flyAway() {
+		var top = $("#Game-char").position().top;
+		var upTo = top - 80;
+
+		//Rais the birdMan 60px
+		state.toPos = (upTo > 0)?upTo:0;
+	}
+
+	function fall() {
+		var playerTop = parseInt($("#Game-char").css("top"));
+
+		if(state.toPos >= playerTop && !groundHit(playerTop)) {		//Fall Down
+			var topString = (Math.floor(playerTop + 2)).toString() + 'px';
+			$("#Game-char").css({top : topString});
+			state.toPos = playerTop + 2;
+		} else {										//Rise Up
+			$("#Game-char").css("top", (playerTop - 4));
+		}
+
+		requestAnimationFrame(fall);
+	}
+
+	function groundHit(charHeiht) {
+		return ($(window).height() < (charHeiht + 90));
+	}
+
+	return {
+		init: constructur,
+		move: flyAway
+	};
+}();
+
+$(document).ready(function() {
+    Game.init();
+
+    $("#Game-mute").click(function() {
+		Game.sound();
+	});
+});
+
+$(window).on("click keydown", function(e) {
+	if(e.keyCode == 32 || e.type == "click") {
+		Player.move();
+	}
 });

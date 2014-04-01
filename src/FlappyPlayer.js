@@ -3,7 +3,7 @@ var Player = function() {
 
 	function constructur() {
 		state.toPos = $("#Game-char").position().top;
-		//requestAnimationFrame(fall);
+		requestAnimationFrame(fall);
 	}
 
 	function flyAway() {
@@ -15,26 +15,21 @@ var Player = function() {
 	}
 
 	function fall() {
-		var top = $("#Game-char").position().top;
+		var playerTop = parseInt($("#Game-char").css("top"));
 
-		if(state.toPos >= top && !groundHit(top)) {		//Fall Down
-			$("#Game-char").css("top", (top + 2));
-			state.toPos = top + 2;
+		if(state.toPos >= playerTop && !groundHit(playerTop)) {		//Fall Down
+			var topString = (Math.floor(playerTop + 2)).toString() + 'px';
+			$("#Game-char").css({top : topString});
+			state.toPos = playerTop + 2;
 		} else {										//Rise Up
-			$("#Game-char").css("top", (top - 4));
+			$("#Game-char").css("top", (playerTop - 4));
 		}
 
 		requestAnimationFrame(fall);
 	}
 
 	function groundHit(charHeiht) {
-
-		//Floor Hit
-		if($(window).height() < charHeiht + 90) {
-			return false;
-		}
-
-		return false;
+		return ($(window).height() < (charHeiht + 90));
 	}
 
 	return {
@@ -51,4 +46,10 @@ $(document).ready(function() {
     $("#Game-mute").click(function() {
 		Game.sound();
 	});
+});
+
+$(window).on("click keydown", function(e) {
+	if(e.keyCode == 32 || e.type == "click") {
+		Player.move();
+	}
 });
