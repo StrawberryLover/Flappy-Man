@@ -41,6 +41,10 @@ var Game = function() {
 		//delete pipes
 		$('.pipeContainer').remove();
 		pipes = [];
+
+		end = false;
+		$("#Ground").css('-webkit-animation-play-state', 'play');
+		$("#Game-char").css('-webkit-animation-play-state', 'play');
 		on = false;
 	}
 
@@ -149,7 +153,7 @@ var Game = function() {
 }();
 
 $(document).ready(function() {
-	$("#Game-body").on("click keydown", function(e) {
+	$(window).on("click keydown", function(e) {
 		if(e.keyCode == 32 || e.type == "click") {
 			if(!Game.isON())
 				Game.init();

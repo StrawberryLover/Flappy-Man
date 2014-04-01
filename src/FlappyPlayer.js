@@ -34,9 +34,10 @@ var Player = function() {
 
 		//Reset Variables
 		velocity = 0;
-		position = 280;
+		position = ($(window).height() / 100 ) * 35;
 		rotation = 0;
 
+		//$("#Game-char").css({top: position});
 		$(".overlay").addClass("load");
 		$(".dasModel").addClass("load");
 	}
