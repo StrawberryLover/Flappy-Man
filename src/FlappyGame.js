@@ -27,8 +27,10 @@ var Game = function() {
 
 	function incrementScore(){
 		score++;
-		$("#scoreS").get(0).load();
-		$("#scoreS").get(0).play();
+		if(!isMuted()){
+			$("#scoreS").get(0).load();
+			$("#scoreS").get(0).play();
+		}
 		$("#Game-score").html(score);
 	}
 
