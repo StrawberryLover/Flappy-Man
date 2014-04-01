@@ -3,9 +3,10 @@ var Game = function() {
 	var pipes = [], pipeID, end = false, on = false;
 
 	function constructur() {
+
 		Player.init();
 		on = true;
-		
+		$("#Game-score").html(score);
 		//Start spawning pipes
 		requestAnimationFrame(loopPipe);
 
@@ -26,12 +27,12 @@ var Game = function() {
 
 	function incrementScore(){
 		score++;
-		$("#Game-score").innerHTML = score;
+		$("#Game-score").html(score);
 	}
 
 	function resetGame(){
 		//reset score
-		$("#Game-score").innerHTML = 0;
+		$("#Game-score").html(0);
 		score = 0;
 		//delete pipes
 		$('.pipeContainer').remove();
@@ -57,7 +58,6 @@ var Game = function() {
 
 	function removePipe() {
 		$('.pipeContainer:first').remove();
-		pipes.shift();
 	}
 
 	function loopCollision() {
@@ -69,19 +69,24 @@ var Game = function() {
 
 		//Get nextPipe Info
 		var upPipe = nextPipe.children(".upPipe");
+		var downPipe = nextPipe.children(".downPipe");
 
 		var pipeLeft = upPipe.offset().left;
 		var pipeRight = pipeLeft + 80;
 		var pipeTop = upPipe.offset().top + upPipe.height();
-		var pipeBottom = pipeTop + 250;
+		var pipeBottom = $(window).height() - downPipe.height();
 
 		//Get Player Info
 		var box = document.getElementById('Game-char').getBoundingClientRect();
-		var boxRight = box.left + 90;
-		var boxBottom = box.top + box.height;
-		var boxTop = box.top;
+		var boxHeight = box.height + 20;
+		var boxWidth = box.width;
+		var boxTop = box.top + 25;
+		var boxLeft = box.left;
+		var boxRight = box.left + 75;
+		var boxBottom = boxTop + boxHeight - 55;
 
-		if(box.bottom >= $("#Ground").offset().top) {
+
+		if(boxBottom >= $("#Ground").offset().top + 15) {
 			endGame();
 			return;
 		}
@@ -93,6 +98,11 @@ var Game = function() {
 				return;
 			}
 		} 
+
+		if(boxRight > pipeLeft + upPipe.width()){
+			pipes.shift();
+			incrementScore();
+		}
 
 		requestAnimationFrame(loopCollision);
 	}
