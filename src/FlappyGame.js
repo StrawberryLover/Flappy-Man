@@ -1,6 +1,6 @@
 var Game = function() {
 	var score = 0, mute = false;
-	var pipes = [], pipeID, end = false, on = false;
+	var pipes = [], pipeID, pipeTimeOut, end = false, on = false;
 
 	function constructur() {
 
@@ -8,7 +8,7 @@ var Game = function() {
 		on = true;
 		$("#Game-score").html(score);
 		//Start spawning pipes
-		requestAnimationFrame(loopPipe);
+		pipeID = requestAnimationFrame(loopPipe);
 
 		//Start Collison detector
 		requestAnimationFrame(loopCollision);
@@ -22,7 +22,7 @@ var Game = function() {
 		newPipe();
 		
 		//Wait 2 sec before spawning another pipe
-		setTimeout(function(){requestAnimationFrame(loopPipe);}, 2000);
+		pipeTimeOut = setTimeout(function(){pipeID = requestAnimationFrame(loopPipe);}, 2000);
 	}
 
 	function incrementScore(){
@@ -35,19 +35,30 @@ var Game = function() {
 	}
 
 	function resetGame(){
-		//reset score
+		//Set Death Screen
 		$(".overlay").removeClass("load");
 		$(".dasModel").removeClass("load");
+
+		//Reset Scoure
 		$("#Game-score").html(0);
 		score = 0;
-		//delete pipes
+
+		//Reset pipes
 		$('.pipeContainer').remove();
 		pipes = [];
+		window.clearTimeout(pipeTimeOut);
+		cancelAnimationFrame(pipeID);
 
 		end = false;
-		$("#Ground").css('-webkit-animation-play-state', 'play');
-		$("#Game-char").css('-webkit-animation-play-state', 'play');
 		on = false;
+
+		//Reset Ground
+		$("#Ground").css('-webkit-animation-play-state', 'play');
+
+		//Reset Player
+		$("#Game-char").css('-webkit-animation-play-state', 'play');
+		$("#Game-char").css({top: ($(window).height() / 100 ) * 35});
+		document.getElementById('Game-char').style['-webkit-transform'] = "rotate(" + 0 + "deg)";
 	}
 
 	function newPipe() {
@@ -157,6 +168,11 @@ var Game = function() {
 $(document).ready(function() {
 
 	$(window).on("click keydown touchstart", function(e) {
+		var ID = e.target.id;
+		var parID = $(e.target).parent().attr('id');
+
+		if(ID === "reset"  || parID === "reset"  || ID === "Game-mute")
+			return;
 
 		if(e.keyCode == 32 || e.type == "click") {
 			if(!Game.isON())
