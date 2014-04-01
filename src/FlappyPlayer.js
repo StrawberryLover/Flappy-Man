@@ -38,6 +38,8 @@ var Player = function() {
 }();
 
 $(document).ready(function() {
+    Game.init();
+
     $("#mainS").get(0).play();
 
     $("#Game-mute").click(function() {

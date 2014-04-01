@@ -29,6 +29,15 @@ var Game = function() {
 		$("#Game-score").innerHTML = score;
 	}
 
+	function resetGame(){
+		//reset score
+		$("#Game-score").innerHTML = 0;
+		score = 0;
+		//delete pipes
+		$('.pipeContainer').remove();
+
+	}
+
 	function newPipe() {
 		if(end) return;
 
@@ -110,10 +119,15 @@ var Game = function() {
 		mute = !mute;
 	}
 
+	function isMuted(){
+		return mute;
+	}
+
 	return {
 		init: constructur,
 		sound: setSound,
 		removePipe: removePipe,
+		isMuted: isMuted,
 		isON: getON
 	};
 }();
@@ -122,6 +136,11 @@ $(window).on("click keydown", function(e) {
 	if(e.keyCode == 32 || e.type == "click") {
 		if(!Game.isON())
 			Game.init();
+
+		if(!Game.isMuted()){
+			$("#flapS").get(0).load();
+			$("#flapS").get(0).play();
+		}
 
 		Player.move();
 	}
