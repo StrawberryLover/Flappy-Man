@@ -72,6 +72,18 @@ body {
 		-webkit-animation: groundMove linear 16.8s infinite both
 	}
 
+	#Game-devil {
+		position: absolute;
+		left: -100px;
+		width: 8%;
+		heigth: 10%;
+		z-index: 9;
+
+		-webkit-animation: devilMove 8000ms linear infinite;
+
+
+	}
+
 	.pipeContainer {
 		position: absolute;
 		left: -100px;
@@ -156,6 +168,8 @@ body {
 	padding-top: 30px;
 	font-size: 5em;
 
+	-webkit-transition: opacity 2s ease-in;
+
 	div {
 		position: absolute;
 		font-size: 0.3em;
@@ -201,7 +215,26 @@ body {
 }
 
 @-webkit-keyframes devilMove {
-
+	0% {
+		left: 0%;
+		top: 100%;
+		width: 8%;
+		heigth: 10%;
+	}
+	25% {
+		left: 10%;
+		top: 75%;
+	}
+	35% {
+		left: 8%;
+		top: 77%;
+	}
+	100% {
+		left: 100%;
+		top: 10%;
+		width: 2%;
+		heigth: 3%;
+	}
 }
 
 @font-face {
