@@ -1,7 +1,5 @@
 var Player = function() {
 	var state = {toPos: 0};
-	
-	
 
 	function constructur() {
 		state.toPos = $("#Game-char").position().top;
@@ -47,6 +45,8 @@ var Player = function() {
 
 $(document).ready(function() {
     Game.init();
+
+    $("#mainS").get(0).play();
 
     $("#Game-mute").click(function() {
 		Game.sound();
