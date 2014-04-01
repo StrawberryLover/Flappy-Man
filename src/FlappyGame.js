@@ -36,8 +36,8 @@ var Game = function() {
 
 	function resetGame(){
 		//Set Death Screen
-		$(".overlay").removeClass("load");
-		$(".dasModel").removeClass("load");
+		$(".overlay").removeClass("loadOver");
+		$(".dasModel").removeClass("loadText");
 
 		//Reset Scoure
 		$("#Game-score").html(0);
@@ -51,6 +51,12 @@ var Game = function() {
 
 		end = false;
 		on = false;
+
+		$("#mainS").get(0).load();
+		$("#mainS").get(0).play();
+		if(!isMuted()){
+			$("#mainS").get(0).muted = false;
+		}
 
 		//Reset Ground
 		$("#Ground").css('-webkit-animation-play-state', 'play');
