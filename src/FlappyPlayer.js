@@ -15,7 +15,7 @@ var Player = function() {
 	}
 
 	function fall() {
-		var playerTop = parseInt($("#Game-char").css("top"));
+		var playerTop = parseInt($("#Game-char").css("top"), 10);
 
 		if(state.toPos >= playerTop && !groundHit(playerTop)) {		//Fall Down
 			var topString = (Math.floor(playerTop + 2)).toString() + 'px';
