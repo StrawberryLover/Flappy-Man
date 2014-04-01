@@ -88,13 +88,14 @@ var Game = function() {
 
 	function setSound() {
 		if(mute) {
-			mute = !mute;
-			$("#Game-mute").attr("src","/css/less/img/VolumeOff.png");
+			$("#Game-mute").attr("src","/css/less/img/VolumeOn.png");
+			$("#mainS").get(0).muted = false;
 		}
 		else {
-			$("#Game-mute").attr("src","/css/less/img/VolumeOn.png");
-			mute = !mute;
+			$("#Game-mute").attr("src","/css/less/img/VolumeOff.png");
+			$("#mainS").get(0).muted = true;
 		}
+		mute = !mute;
 	}
 
 	return {
