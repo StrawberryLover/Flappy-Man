@@ -36,8 +36,8 @@ var Game = function() {
 
 	function resetGame(){
 		//Set Death Screen
-		$(".overlay").removeClass("load");
-		$(".dasModel").removeClass("load");
+		$(".overlay").removeClass("loadOver");
+		$(".dasModel").removeClass("loadText");
 
 		//Reset Scoure
 		$("#Game-score").html(0);
