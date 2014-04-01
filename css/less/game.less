@@ -140,8 +140,6 @@ body {
 	height: 100%;
 	width: 100%;
 	background-color: red;
-	z-index: 20;
-	-webkit-transition: opacity 2s ease-in;
 }
 
 .dasModel {
@@ -154,7 +152,7 @@ body {
 	margin-top: -50px;
 	margin-left: -150px;
 	text-align: center;
-	z-index: 21; /* 1px higher than the overlay layer */
+	z-index: 22; /* 1px higher than the overlay layer */
 	padding-top: 30px;
 	font-size: 5em;
 
@@ -171,10 +169,20 @@ body {
 	}
 }
 
-.load {
+.loadOver {
 	display: block;
 	opacity: 0.5;
 	-webkit-transition: opacity 2s ease-in;
+	-webkit-transform: translate3d(0,0,0);
+	width: 100%;
+	z-index: 21;
+}
+
+.loadText {
+	display: block;
+	opacity: 1;
+	-webkit-transition: opacity 2s ease-in;
+	-webkit-transform: translate3d(0,0,0);
 }
 
 @-webkit-keyframes groundMove {  

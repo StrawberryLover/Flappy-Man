@@ -42,8 +42,8 @@ var Player = function() {
 		rotation = 0;
 
 		//$("#Game-char").css({top: position});
-		$(".overlay").addClass("load");
-		$(".dasModel").addClass("load");
+		$(".overlay").addClass("loadOver");
+		$(".dasModel").addClass("loadText");
 	}
 
 	return {
