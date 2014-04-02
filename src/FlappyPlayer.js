@@ -15,7 +15,7 @@ var Player = function() {
 		velocity += gravity;
 		position += velocity;
 		rotation = Math.min((velocity / 15) * 90, 90);
-		document.getElementById('Game-char').style['-webkit-transform'] = "rotate(" + rotation + "deg)";
+		document.getElementById('Game-char').style['-webkit-transform'] = "translate3d(0, 0, 0) rotate(" + rotation + "deg)";
 		$("#Game-char").css({top: position});
 	}
 

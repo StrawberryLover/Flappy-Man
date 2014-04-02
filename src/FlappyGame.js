@@ -65,13 +65,14 @@ var Game = function() {
 			$("#mainS").get(0).muted = false;
 		}
 
-		//Reset Ground
+		//Reset Ground and bg
 		$("#Ground").css('-webkit-animation-play-state', 'play');
+		$("#Game-body").css('-webkit-animation-play-state', 'play');
 
 		//Reset Player
 		$("#Game-char").css('-webkit-animation-play-state', 'play');
 		$("#Game-char").css({top: ($(window).height() / 100 ) * 35});
-		document.getElementById('Game-char').style['-webkit-transform'] = "rotate(" + 0 + "deg)";
+		document.getElementById('Game-char').style['-webkit-transform'] = "translate3d(0, 0, 0) rotate(" + 0 + "deg)";
 	}
 
 	function newPipe() {
@@ -144,6 +145,7 @@ var Game = function() {
 
 	function endGame() {
 		//Pause Ground, Pipes and Player
+		$("#Game-body").css('-webkit-animation-play-state', 'paused');
 		$("#Ground").css('-webkit-animation-play-state', 'paused');
 		$(".pipe").css('-webkit-animation-play-state', 'paused');
 		$("#Game-char").css('-webkit-animation-play-state', 'paused');
