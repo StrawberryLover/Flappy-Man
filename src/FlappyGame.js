@@ -1,15 +1,14 @@
 var Game = function() {
-	var score = 0, highscore = 0, mute = false;
-	var pipes = [], pipeID, pipeTimeOut, end = false, on = false;
+	var score = 0, highscore = (localStorage.highscore)?parseInt(localStorage.highscore, 10):0,
+	mute = false, pipes = [], pipeID, pipeTimeOut, end = false, on = false;
 
 	function constructur() {
 
 		Player.init();
 		on = true;
 		$("#Game-score").html(score);
-		if(highscore === 0) {
-			$("#innerHS").html(score);
-		}
+		$("#innerHS").html(highscore);
+
 		//Start spawning pipes
 		pipeID = requestAnimationFrame(loopPipe);
 
@@ -37,6 +36,7 @@ var Game = function() {
 		$("#Game-score").html(score);
 		if(score > highscore) {
 			highscore = score;
+			localStorage.setItem("highscore", score);
 			$("#innerHS").html(score);
 		}
 	}
