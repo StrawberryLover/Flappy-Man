@@ -58,7 +58,7 @@ $(document).ready(function() {
 	$("#mainS").get(0).muted = false;
     $("#mainS").get(0).play();
 
-    $("#Game-mute").click(function() {
+    $("#Mute").click(function() {
 		Game.sound();
 	});
 

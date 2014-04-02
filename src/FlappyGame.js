@@ -156,11 +156,11 @@ var Game = function() {
 
 	function setSound() {
 		if(mute) {
-			$("#Game-mute").attr("src","/css/less/img/VolumeOn.png");
+			$("#Mute").attr("src","/css/less/img/VolumeOn.png");
 			$("#mainS").get(0).muted = false;
 		}
 		else {
-			$("#Game-mute").attr("src","/css/less/img/VolumeOff.png");
+			$("#Mute").attr("src","/css/less/img/VolumeOff.png");
 			$("#mainS").get(0).muted = true;
 		}
 		mute = !mute;
@@ -186,7 +186,7 @@ $(document).ready(function() {
 		var ID = e.target.id;
 		var parID = $(e.target).parent().attr('id');
 
-		if(ID === "reset"  || parID === "reset"  || ID === "Game-mute")
+		if(ID === "reset"  || parID === "reset"  || ID === "Mute")
 			return;
 
 		if(e.keyCode == 32 || e.type == "click") {
